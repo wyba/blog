@@ -12,13 +12,13 @@ features: # 可选的
     details: Jetpack、MVVM、模块化、组件化
     link: /Android/ # 可选
     imgUrl: /img/Android-1.png# 可选
-  - title: Flutter
-    details: 跨平台、最接近原生、性能强大
-    link: /ui/
-    imgUrl: /img/flutter.png
-  - title: H5
-    details: Htlm、CSS、JS
-    link: /technology/
+  - title: Java
+    details: jdk、mysql、springboot
+    link: /Java/
+    imgUrl: /img/java.png
+  - title: Web
+    details: vue、ts、nodejs
+    link: /web/
     imgUrl: /img/h5.png
 # 文章列表显示方式: detailed 默认，显示详细版文章列表（包括作者、分类、标签、摘要、分页等）| simple => 显示简约版文章列表（仅标题和日期）| none 不显示文章列表
 # postList: detailed
@@ -29,10 +29,11 @@ features: # 可选的
 <!-- <img src="/img/panda-waving.png" class="panda no-zoom" style="width: 130px;height: 115px;opacity: 0.8;margin-bottom: -4px;padding-bottom:0;position: fixed;bottom: 0;left: 0.5rem;z-index: 1;"> -->
 
 <!--
+
 ## 关于
 
 ### 📚Blog
-这是一个兼具博客文章、知识管理、文档查找的个人网站，主要内容是Web前端技术。如果你喜欢这个博客&主题欢迎到[GitHub](https://github.com/xugaoyi/vuepress-theme-vdoing)点个Star、获取源码，或者交换[友链](/friends/) ( •̀ ω •́ )✧
+这是一个兼具博客文章、知识管理、文档查找的个人网站，主要内容是Web前端技术。如果你喜欢这个博客&主题欢迎到[GitHub](https://github.com/wyba/vuepress-theme-vdoing)点个Star、获取源码，或者交换[友链](/friends/) ( •̀ ω •́ )✧
 
 ### 🎨Theme
 本站主题是根据[VuePress](https://vuepress.vuejs.org/zh/)的默认主题修改而成。取名`Vdoing`(维度)，旨在轻松打造一个`结构化`与`碎片化`并存的个人在线知识库&博客，让你的知识海洋像一本本书一样清晰易读。配合多维索引，让每一个知识点都可以快速定位！ 更多[详情](https://github.com/xugaoyi/vuepress-theme-vdoing)。
