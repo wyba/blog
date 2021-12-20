@@ -54,7 +54,7 @@ module.exports = {
     // 博主信息，显示在首页侧边栏
     avatar: 'https://cdn.jsdelivr.net/gh/wyba/image_store/blog/lufei.jpeg',
     name: 'wyb',
-    slogan: '疯狂copy',
+    slogan: '吾日三省吾身',
   },
   social: {
     // 社交图标，显示于博主信息栏和页脚栏
