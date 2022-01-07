@@ -9,3 +9,4 @@ fatal: Authentication failed for 'https://github.com/wyba/blog.git/'
 
 ![image-20220107165257867](https://cdn.jsdelivr.net/gh/wyba/image_store/blog/image-20220107165257867.png)
 
+这个还是不行，直接申请个人密钥，更新token
