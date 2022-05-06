@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>HashMap原理和扩容机制 | wyb&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    <link rel="icon" href="/blog/img/favicon.ico">
+    <script data-ad-client="ca-pub-7828333725993554" async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="description" content="主流技术博客,简洁至上,专注全栈学习与总结。">
+    <meta name="keywords" content="前端博客,个人技术博客,前端,前端开发,前端框架,web前端,前端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown">
+    <meta name="baidu-site-verification" content="7F55weZDDc">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.7dd69afa.css" as="style"><link rel="preload" href="/blog/assets/js/app.7a0bcda5.js" as="script"><link rel="preload" href="/blog/assets/js/2.a5a0f980.js" as="script"><link rel="preload" href="/blog/assets/js/39.849e03fc.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.2ffa04b0.js"><link rel="prefetch" href="/blog/assets/js/11.70f92a32.js"><link rel="prefetch" href="/blog/assets/js/12.340f549c.js"><link rel="prefetch" href="/blog/assets/js/13.9e5f7372.js"><link rel="prefetch" href="/blog/assets/js/14.b9340184.js"><link rel="prefetch" href="/blog/assets/js/15.6c1f35df.js"><link rel="prefetch" href="/blog/assets/js/16.e3c6e4ef.js"><link rel="prefetch" href="/blog/assets/js/17.0053c99b.js"><link rel="prefetch" href="/blog/assets/js/18.45a0f3ed.js"><link rel="prefetch" href="/blog/assets/js/19.fb9cc485.js"><link rel="prefetch" href="/blog/assets/js/20.3d5c7a50.js"><link rel="prefetch" href="/blog/assets/js/21.3d0ee275.js"><link rel="prefetch" href="/blog/assets/js/22.e8a9df9a.js"><link rel="prefetch" href="/blog/assets/js/23.82ed3e72.js"><link rel="prefetch" href="/blog/assets/js/24.9d7a7b68.js"><link rel="prefetch" href="/blog/assets/js/25.0bc9ab07.js"><link rel="prefetch" href="/blog/assets/js/26.d2b7a967.js"><link rel="prefetch" href="/blog/assets/js/27.2c02fa2c.js"><link rel="prefetch" href="/blog/assets/js/28.a1afa2d7.js"><link rel="prefetch" href="/blog/assets/js/29.10d9dc2f.js"><link rel="prefetch" href="/blog/assets/js/3.8ec5b007.js"><link rel="prefetch" href="/blog/assets/js/30.425d8100.js"><link rel="prefetch" href="/blog/assets/js/31.63e4f8fb.js"><link rel="prefetch" href="/blog/assets/js/32.77a66ca1.js"><link rel="prefetch" href="/blog/assets/js/33.d0e23080.js"><link rel="prefetch" href="/blog/assets/js/34.1e204563.js"><link rel="prefetch" href="/blog/assets/js/35.2833874a.js"><link rel="prefetch" href="/blog/assets/js/36.97de71b1.js"><link rel="prefetch" href="/blog/assets/js/37.9036f6e9.js"><link rel="prefetch" href="/blog/assets/js/38.6793c03d.js"><link rel="prefetch" href="/blog/assets/js/4.6e55e017.js"><link rel="prefetch" href="/blog/assets/js/40.56980ac8.js"><link rel="prefetch" href="/blog/assets/js/41.7a196738.js"><link rel="prefetch" href="/blog/assets/js/42.10732ea3.js"><link rel="prefetch" href="/blog/assets/js/43.810ba5a4.js"><link rel="prefetch" href="/blog/assets/js/44.73bbd126.js"><link rel="prefetch" href="/blog/assets/js/45.63b7b5a1.js"><link rel="prefetch" href="/blog/assets/js/46.a65e64ce.js"><link rel="prefetch" href="/blog/assets/js/47.00dc050a.js"><link rel="prefetch" href="/blog/assets/js/48.b91a0ddd.js"><link rel="prefetch" href="/blog/assets/js/49.4a16d835.js"><link rel="prefetch" href="/blog/assets/js/5.4843dc8e.js"><link rel="prefetch" href="/blog/assets/js/50.132e204b.js"><link rel="prefetch" href="/blog/assets/js/51.1345b9a1.js"><link rel="prefetch" href="/blog/assets/js/52.742ee8db.js"><link rel="prefetch" href="/blog/assets/js/53.8d9c7dd6.js"><link rel="prefetch" href="/blog/assets/js/54.c4038d3f.js"><link rel="prefetch" href="/blog/assets/js/55.766e53e6.js"><link rel="prefetch" href="/blog/assets/js/56.ad60a3d1.js"><link rel="prefetch" href="/blog/assets/js/57.13758d00.js"><link rel="prefetch" href="/blog/assets/js/58.ee3f65e8.js"><link rel="prefetch" href="/blog/assets/js/59.602af4ee.js"><link rel="prefetch" href="/blog/assets/js/6.da76d55e.js"><link rel="prefetch" href="/blog/assets/js/60.15e31058.js"><link rel="prefetch" href="/blog/assets/js/61.7f219b23.js"><link rel="prefetch" href="/blog/assets/js/62.10d98d67.js"><link rel="prefetch" href="/blog/assets/js/63.8ef0d49d.js"><link rel="prefetch" href="/blog/assets/js/64.983ab7ac.js"><link rel="prefetch" href="/blog/assets/js/65.37330ddf.js"><link rel="prefetch" href="/blog/assets/js/66.2776a634.js"><link rel="prefetch" href="/blog/assets/js/67.8b5b3535.js"><link rel="prefetch" href="/blog/assets/js/68.cccc4d3a.js"><link rel="prefetch" href="/blog/assets/js/7.ba6e6c9a.js"><link rel="prefetch" href="/blog/assets/js/8.99b38245.js"><link rel="prefetch" href="/blog/assets/js/9.fc8f51e1.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.7dd69afa.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><img src="/blog/img/EB-logo.png" alt="wyb's blog" class="logo"> <span class="site-name can-hide">wyb's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/blog/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div> <a href="https://github.com/wyba/blog" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="https://cdn.jsdelivr.net/gh/wyba/image_store/blog/lufei.jpeg"> <div class="blogger-info"><h3>wyb</h3> <span>吾日三省吾身</span></div></div> <nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/blog/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div> <a href="https://github.com/wyba/blog" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/blog/pages/java_1/" class="sidebar-link">JDK安装及环境变量设置</a></li><li><a href="/blog/pages/f55250/" aria-current="page" class="active sidebar-link">HashMap原理和扩容机制</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/blog/pages/f55250/#jdk1-8版本的hashmap" class="sidebar-link">JDK1.8版本的HashMap</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#初始容量" class="sidebar-link">初始容量</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#加载因子" class="sidebar-link">加载因子</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#扩容" class="sidebar-link">扩容</a></li></ul></li><li class="sidebar-sub-header level2"><a href="/blog/pages/f55250/#常问的面试题" class="sidebar-link">常问的面试题</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#_1-谈一下hashmap的特性" class="sidebar-link">1.谈一下HashMap的特性？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#_2-谈一下hashmap的底层原理是什么" class="sidebar-link">2.谈一下HashMap的底层原理是什么？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#_3-hashmap-的数据结构" class="sidebar-link">3 .HashMap 的数据结构？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#_4-hashmap-linkedhashmap-treemap-有什么区别" class="sidebar-link">4 .HashMap，LinkedHashMap，TreeMap 有什么区别？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#_5-谈一下hashmap中put是如何实现的" class="sidebar-link">5.谈一下hashMap中put是如何实现的？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#_6-hashmap中什么时候需要进行扩容-扩容resize-又是如何实现的" class="sidebar-link">6.HashMap中什么时候需要进行扩容，扩容resize()又是如何实现的？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#_7-什么是哈希冲突以及-哈希冲突的解决方案" class="sidebar-link">7.什么是哈希冲突以及 哈希冲突的解决方案</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#_8-谈一下当两个对象的hashcode相等时会怎么样" class="sidebar-link">8.谈一下当两个对象的hashCode相等时会怎么样？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#_9-传统hashmap的缺点-为什么引入红黑树" class="sidebar-link">9.传统hashMap的缺点(为什么引入红黑树?)</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#_10-加载因子为什么是-0-75" class="sidebar-link">10.加载因子为什么是 0.75？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#hashmap-和-hashset-的区别有什么" class="sidebar-link">HashMap 和 HashSet 的区别有什么？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#当两个对象的-hashcode-相同会发生什么" class="sidebar-link">当两个对象的 HashCode 相同会发生什么？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#如果两个键的-hashcode-相同-你如何获取值对象" class="sidebar-link">如果两个键的 HashCode 相同，你如何获取值对象？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#多线程情况下-调整-hashmap-的大小会有什么问题" class="sidebar-link">多线程情况下，调整 HashMap 的大小会有什么问题？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#jdk8中的hashmap有哪些改动" class="sidebar-link">JDK8中的HashMap有哪些改动?</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#jdk8中为什么要使用红黑树" class="sidebar-link">JDK8中为什么要使用红黑树?</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#hashmap扩容机制是怎么样的-jdk7-与jdk8有什么不同吗" class="sidebar-link">HashMap扩容机制是怎么样的，JDK7 与JDK8有什么不同吗?</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#为什么重写对象的equals方法时-要重写hashcode方法-跟hashmap有关系吗-为什么" class="sidebar-link">为什么重写对象的Equals方法时，要重写HashCode方法，跟HashMap有关系吗?为什么？</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#在使用hashmap的过程中我们应该注意些什么问题" class="sidebar-link">在使用HashMap的过程中我们应该注意些什么问题?</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#hashmap和hashtable的区别" class="sidebar-link">HashMap和Hashtable的区别</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#为什么hashmap大小是2的整数次幂的时候效率最高" class="sidebar-link">为什么HashMap大小是2的整数次幂的时候效率最高</a></li><li class="sidebar-sub-header level3"><a href="/blog/pages/f55250/#linkedhashmap和hashmap的区别" class="sidebar-link">LinkedHashMap和HashMap的区别</a></li></ul></li></ul></li><li><a href="/blog/pages/38975b/" class="sidebar-link">Java反射机制</a></li><li><a href="/blog/pages/fa6c4a/" class="sidebar-link">Java注解</a></li><li><a href="/blog/pages/c91116/" class="sidebar-link">Java泛型</a></li><li><a href="/blog/pages/0f6210/" class="sidebar-link">Java多线程</a></li><li><a href="/blog/pages/131fdc/" class="sidebar-link">Java基础</a></li><li><a href="/blog/pages/f7a5cc/" class="sidebar-link">Java设计模式总结</a></li><li><a href="/blog/pages/3e2d7c/" class="sidebar-link">Java集合</a></li></ul> <div class="sidebar-slot sidebar-slot-bottom"><!-- 正方形 -->
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-7828333725993554"
+          data-ad-slot="3508773082"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></div></aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-1baff76c><div class="articleInfo" data-v-1baff76c><ul class="breadcrumbs" data-v-1baff76c><li data-v-1baff76c><a href="/blog/" title="首页" class="iconfont icon-home router-link-active" data-v-1baff76c></a></li> <li data-v-1baff76c><a href="/blog/Java/#Java" data-v-1baff76c>Java</a></li></ul> <div class="info" data-v-1baff76c><div title="作者" class="author iconfont icon-touxiang" data-v-1baff76c><a href="https://github.com/wyba" target="_blank" title="作者" class="beLink" data-v-1baff76c>wyb</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-1baff76c><a href="javascript:;" data-v-1baff76c>2022-04-24</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABKFJREFUSA3tVl1oFVcQnrMbrak3QUgkya1akpJYcrUtIqW1JvFBE9LiQ5v6JmJpolbMg32rVrhgoYK0QiMY6i9Y6EMaW5D+xFJaTYItIuK2Kr3+BJNwkxBj05sQY3b3nM6cs2dv9t7NT/vQJw/sndk5M/PNzJkzewGerP+pAmy+ON8lLzUJgA8ZYxYIYZmGYRnctDaWvJJAmTtfP1pvXsBCCPP8QFcCaRkZYACgDZFO4stNIcBCajEOlmmC9XpJ9bAGCaPaPmzPl32dvLSVu3BWCTQs0XQQ6g0DYgwLIoAZbBCdW/i+781o1VVlm/410mw4h06Y7bIPHNyWDyL4FHkX03Q8SrzNhZTZriieckWt7cL6MM85YcLpsi/7O9/iXFT6MswI0DmmpkSaJ0qLxFIm3+i1THHB3zmBH3PYx9CcykcLOeQVVa7QtdxTgQgEleX2AjHYfwA+2ddV77ruGoJUbhGDI09YSNXyMpUt5ylOzxgbUmtOp7NmbNt8v3arjTBfYELmLUV+M+nSawNNAUqpT3ClJWg5I3BLT+cGW/DXNGCa6tx1aakCGEigArTn4TDIPdrXXYKCZNrHLMCOEPvHBlLQ99s9eHB7EB6NTki73CVPQ2F5MSx/uRQixfmq7rK0wYD8w8E905bnPDfwoWs/rfv93NWN/ZfvwsLIU7A09gxECyISeGJkHAau98L97tuw7NXnoPyNF8FcYGLGKsOs0mN3OEyec9esGW/ZEl945dTP34wlR2FZVQWU1q0Cw8Tr7p+hgLLNL0FPxx/Q35mA8aEUrH6nCgwEl0tn7wUiZYJnNRh6DK4UH/k0lfyrsBKdPVv/AriGIQcEDQZ65LBAGe2Rzui9Ybjz7XUppz1/uKBbyVPGkN3ZAeC6hr0x7Nr38N5+EqkoOm17xpoqR9ohQF55ERSvr4Dkr3chNfC3DMzGJlNBElW8w9nsGQvhNGIzDkXzCg8cLK951xHsFBlTJspJNi3ZFIMF2AeDV3q8DNOB+YHi6QTrChDIWDBRi5U5f+ZMfJLu3ccrqxtdxk4SKH336LFxSmkqefwU5T8fhdSdQf9IVKD6aNiwI/hnmcAZ91isYMJIaCUCx9W098+LgruikeTqzqqxKPUwqJyCPJiyemVVZBOijDGjD38Os0jOiSPL1z3SPjXNANbiNPXAdzTfukjjuknNBbyz3nwgTd3AVFqUJ5hpHlq9MveLnWwttUfoygBmvVjuikxND3znrhsELnZk7k+OjIGxeNEkomyLVta0xxn+HZhjBc4YZ/AFjHjz9u3xRZl2BN4aq9nFwWh16IrQ1aHHEd3j1+4/dB9OtH4e29A2H1DyHQRmOSfQZ1Fy7MHBTGB6J/Djq6p3OxyO2cB+4Car7v/o3GXgfAkj23+x9ID1Teoamo/SXcbvSf2PX7Vc8DdCmE1vN9di+32P9/5YR3vLnhCVGUWBjEkr3yh4H8v9CzmsbdhzOKzsJKM90iFdaTMjRPhGVsakRvOaRidljo6H6G7j+ctrJpsP+4COhDIl0La2+FS4+5mlocBaXY5QnGZysIBYoeSsl5qQzrSj/cgNrfuEzlWBfwA+EjrZyWUvpAAAAABJRU5ErkJggg==">HashMap原理和扩容机制<!----></h1> <div class="page-slot page-slot-top"><!-- 固定100% * 90px可显示，max-height:90px未见显示-->
+     <ins class="adsbygoogle"
+          style="display:inline-block;width:100%;max-height:90px"
+          data-ad-client="ca-pub-7828333725993554"
+          data-ad-slot="6625304284"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></div> <div class="theme-vdoing-content content__default"><blockquote><p>老生常谈了</p></blockquote> <h2 id="jdk1-8版本的hashmap"><a href="#jdk1-8版本的hashmap" class="header-anchor">#</a> JDK1.8版本的HashMap</h2> <ul><li>HashMap可以放null，HashTable不可以</li> <li>HashMap是线程不安全的，HashTable是线程安全的，因为它的每个关键方法都加了<code>synchronized</code>关键字。</li> <li>HashMap1.8采用的是尾插法，1.7则是头插法，头插法会导致死循环。</li></ul> <p>主要是<a href="https://so.csdn.net/so/search?q=%E6%95%B0%E7%BB%84&amp;spm=1001.2101.3001.7020" target="_blank" rel="noopener noreferrer">数组<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>+链表+红黑树，但是当链表长度过大时，为了提高效率，会将链表转换为红黑树</p> <p><img src="https://cdn.jsdelivr.net/gh/wyba/image_store/blog/20200926225621475.png" alt="在这里插入图片描述"></p> <p>首先 HashMap 是基于 hashing 的原理，我们知道 HashMap 有两个常用的方法  put()、get()，将键值对传递给 put()方法时，它调用键对象的hashCode()方法来计算hashcode，然后找到 bucket  位置来储存值对象。当获取对象时，通过键对象的equals()方法找到正确的键值对，然后返回值对象。一般情况下，肯定会问如果不同的键对象的hashcode值相等会出现什么样的情况。他们肯定是存储在同一个位置的链表中的，使用键对象的equals()方法找到键值对。</p> <h3 id="初始容量"><a href="#初始容量" class="header-anchor">#</a> 初始容量</h3> <p>始容量的默认值就是16，初始容量必须是<strong>2的n次方</strong>；</p> <h3 id="加载因子"><a href="#加载因子" class="header-anchor">#</a> 加载因子</h3> <p>加载因子<strong>默认为0.75</strong>，当然你也可以改，只要是0-1的数字就行；</p> <h3 id="扩容"><a href="#扩容" class="header-anchor">#</a> 扩容</h3> <p>HashMap有负载因子0.75和初始容量16，同时有对应的阈值16*0.75=12。</p> <p>当存放的数据长度到12时，会进行扩容，大小为原来的两倍。</p> <p>扩容规则：首先创建一个新的、存放数据用的数组，再进行rehash，即再次通过哈希散列将数据放到新数组中。之所以要进行rehash，是因为Hash的公式是与长度有关的，如果不重新hash，以后计算Hash就对不上了。</p> <p>resize这个方法，简单来说，就是把数组长度扩大乘2；</p> <p>那什么时候会被调用呢，可以看之前我们说过，红黑树的转换条件，一个是节点数大于8，这个没说的了；
+而另一个，就是数组长度要大于64，哎？那如果我只满足节点数大于8， 但是我的数组长度还没有到64啊，这个时候怎么办，这个时候就会扩容；
+扩容呢还有别的条件，总结来说以下两个条件满足一个就要扩容；
+1.当桶的占用数量大于（加载因子乘初始容量）
+2.节点数大于8，数组长度小于64</p> <p>只要满足这两个条件之一，就会调用resize方法；
+那这时候又要分了；
+jdk1.8之前：重新进行hash分配
+数组长度都变了，那肯定要重新计算索引值呀，然后在重新分配
+jdk1.8之后：计算新的索引的高位：
+如果是0，新索引的位置就是原来索引的位置
+如果是1，新索引的位置=原来索引的位置+原来数组的长度</p> <p>这个特点通过刚才索引值的计算方法也可以算出来，这里我就不再算了；
+那还有呢，由于这个高位时0/1完全随机，更好的避免了哈希碰撞；</p> <p>然后因为扩容 是个很不好的东西，所以我们要尽量避免扩容，那刚才的加载因子，为什么要为0.75，就是因为加载因子的值，取决了是否要扩容，而0.75这个值，就是最好的；</p> <h2 id="常问的面试题"><a href="#常问的面试题" class="header-anchor">#</a> 常问的面试题</h2> <h3 id="_1-谈一下hashmap的特性"><a href="#_1-谈一下hashmap的特性" class="header-anchor">#</a> 1.谈一下HashMap的特性？</h3> <p>1.HashMap存储键值对实现快速存取，允许为null。key值不可重复，若key值重复则覆盖。
+2.非同步，线程不安全。
+3.底层是hash表，不保证有序(比如插入的顺序)</p> <h3 id="_2-谈一下hashmap的底层原理是什么"><a href="#_2-谈一下hashmap的底层原理是什么" class="header-anchor">#</a> 2.谈一下HashMap的底层原理是什么？</h3> <p>底层原理：Map + 无序 + 键唯一 + 哈希表 （数组+Entry）+ 存取值
+1、HashMap是Map接口的实现类。实现HashMap对数据的操作，允许有一个null键，多个null值。 ConcurrentHashmap、Hashtable不支持key或者value为null，而HashMap是支持的。
+2、是无序的集合，LinkedHashMap是有序的集合。
+3、哈希表结构可以保证键唯一。
+4、HashMap底层就是一个哈希表结构，数组+链表+红黑树（链表超过8个就用红黑树）。新建一个
+HashMap的时候，就会初始化一个数组，数组的初始容量为16，数组中的每一项又是一个链表，
+Entry就是数组中的元素，每个Entry其实就是一个key-value的键值对，它持有一个指向下一个元
+素的引用next，这就构成了链表。先把元素按照相同的hash值进行分组，再把相同哈希值的元素挂
+到一起。
+5、hash算法决定在数组中的位置，equals方法决定在链表中的位置。当需要存储一个Node对象时
+，会根据hash算法来决定在其数组中的位置，在根据equals方法决定其在该数组位置上的链表中的
+存储位置；当需要取出一个Node对象时，也会根据hash算法找到其在数组中的存储位置， 在根据
+equals方法从该位置上的链表中取出Node。</p> <h3 id="_3-hashmap-的数据结构"><a href="#_3-hashmap-的数据结构" class="header-anchor">#</a> 3 .HashMap 的数据结构？</h3> <p>JDK1.7及之前：数组+链表
+JDK1.8：数组+链表+红黑树</p> <h3 id="_4-hashmap-linkedhashmap-treemap-有什么区别"><a href="#_4-hashmap-linkedhashmap-treemap-有什么区别" class="header-anchor">#</a> 4 .HashMap，LinkedHashMap，TreeMap 有什么区别？</h3> <p>HashMap 数据结构以数组为主，查询非常快
+TreeMap 数据结构以红黑树为主，利用了红黑树左小右大的特点，可以实现 key 的排序，
+LinkedHashMap 在 HashMap 的基础上增加了链表的结构，实现了插入顺序访问和最少访问</p> <h3 id="_5-谈一下hashmap中put是如何实现的"><a href="#_5-谈一下hashmap中put是如何实现的" class="header-anchor">#</a> 5.谈一下hashMap中put是如何实现的？</h3> <p>1.计算关于key的hashcode值（与Key.hashCode的高16位做异或运算）
+2.如果散列表为空时，调用resize()初始化散列表
+3.如果没有发生碰撞，直接添加元素到散列表中去
+4.如果发生了碰撞(hashCode值相同)，进行三种判断
+4.1:若key地址相同或者equals后内容相同，则替换旧值
+4.2:如果是红黑树结构，就调用树的插入方法
+4.3：链表结构，循环遍历直到链表中某个节点为空，尾插法进行插入，插入之后判断链表个数是
+否到达变成红黑 树的阙值8；也可以遍历到有节点与插入元素的哈希值和内容相同，进行覆盖。
+5.如果桶满了大于阀值，则resize进行扩容</p> <h3 id="_6-hashmap中什么时候需要进行扩容-扩容resize-又是如何实现的"><a href="#_6-hashmap中什么时候需要进行扩容-扩容resize-又是如何实现的" class="header-anchor">#</a> 6.HashMap中什么时候需要进行扩容，扩容resize()又是如何实现的？</h3> <p>（1）扩容时机：
+1 初始化数组（jdk1.8之后，默认在第一次插入数据的时候才进行数组初始化，初始化
+是通过调用扩容方法实现的）；
+2 当元素个数超过临界值（临界值=装载因子*数组容量）；
+3 当链表长度超过默认阈值8，尝试转化为红黑树，但发现数组长度不到64时。
+（2）扩容机制：
+1 如果数组未初始化过，会将数组的容量和装载因子都设置为默认值，并将数组创建出来。
+2 如果数组初始化过，扩容会分配一个新的数组，新的数组长度翻倍，然后遍历整个老结构将元素
+重新哈希映射到新的数组里。
+3 HashMap在进行扩容时，使用的重新哈希的方式非常巧妙，因为每次扩容都是翻倍，与原来计算的
+(数组长度-1)&amp;hash 的结果相比，只是多了一个bit位，所以结点要么就在原来的位置，要么就被
+分配到&quot;原位置+旧容量&quot;这个位置。</p> <h3 id="_7-什么是哈希冲突以及-哈希冲突的解决方案"><a href="#_7-什么是哈希冲突以及-哈希冲突的解决方案" class="header-anchor">#</a> 7.什么是哈希冲突以及 哈希冲突的解决方案</h3> <p>当要存储一个数据的时候，首先用一个函数计算数据的地址，然后再将数据存进指定地址位置的数组里面。这个函数就是哈希函数，而这个数组就是哈希表。
+哈希冲突是指哈希函数算出来的地址被别的元素占用了
+1.开放定制法
+（1）线性探测
+　　　按顺序决定值时，如果某数据的值已经存在，则在原来值的基础上往后加一个单位，直至不发生哈希冲突。　
+　　（2）再平方探测
+　　　按顺序决定值时，如果某数据的值已经存在，则在原来值的基础上先加1的平方个单位，若仍然存在则减1的平方个单位。随之是2的平方，3的平方等等。直至不发生哈希冲突。
+　　（3）伪随机探测
+　　　按顺序决定值时，如果某数据已经存在，通过随机函数随机生成一个数，在原来值的基础上加上随机数，直至不发生哈希冲突。
+2.链地址法
+对于相同的值，使用链表进行连接。使用数组存储每一个链表。
+　　优点：
+　　（1）拉链法处理冲突简单，且无堆积现象，即非同义词决不会发生冲突，因此平均查找长度较短；
+　　（2）由于拉链法中各链表上的结点空间是动态申请的，故它更适合于造表前无法确定表长的情况；
+　　（3）开放定址法为减少冲突，要求装填因子α较小，故当结点规模较大时会浪费很多空间。而拉链法中可取α≥1，且结点较大时，拉链法中增加的指针域可忽略不计，因此节省空间；
+　　（4）在用拉链法构造的散列表中，删除结点的操作易于实现。只要简单地删去链表上相应的结点即可。</p> <p>​      缺点：
+　　      指针占用较大空间时，会造成空间浪费，若空间用于增大散列表规模进而提高开放地址法的效率。
+3.公共溢出区法
+建立一个特殊存储空间，专门存放冲突的数据。此种方法适用于数据和冲突较少的情况。
+4.再散列法
+准备若干个hash函数，如果使用第一个hash函数发生了冲突，就使用第二个hash函数，第二个也冲突，使用第三个……
+重点了解一下开放定制法和链地址法</p> <h3 id="_8-谈一下当两个对象的hashcode相等时会怎么样"><a href="#_8-谈一下当两个对象的hashcode相等时会怎么样" class="header-anchor">#</a> 8.谈一下当两个对象的hashCode相等时会怎么样？</h3> <p>会产生哈希碰撞，若key值相同则替换旧值，不然链接到链表后面，链表长度超过阙值8就转为红黑树存储</p> <h3 id="_9-传统hashmap的缺点-为什么引入红黑树"><a href="#_9-传统hashmap的缺点-为什么引入红黑树" class="header-anchor">#</a> 9.传统hashMap的缺点(为什么引入红黑树?)</h3> <p>JDK 1.8 以前 HashMap 的实现是 数组+链表，即使哈希函数取得再好，也很难达到元素百分百均匀分
+布。当 HashMap 中有大量的元素都存放到同一个桶中时，这个桶下有一条长长的链表，这个时候
+HashMap 就相当于一个单链表，假如单链表有 n 个元素，遍历的时间复杂度就是 O(n)，完全失去了
+它的优势。针对这种情况，JDK 1.8 中引入了 红黑树（查找时间复杂度为 O(logn)）来优化这个问题。</p> <h3 id="_10-加载因子为什么是-0-75"><a href="#_10-加载因子为什么是-0-75" class="header-anchor">#</a> 10.加载因子为什么是 0.75？</h3> <p>那加载因子为什么是 0.75 而不是 0.5 或者 1.0 呢？
+首先如果加载因子比较大，那么扩容发生的频率就比较低，但是他浪费的空间比较小，不过发生hash
+冲突的几率就比较大，比如加载因子是1的时候，如果hashmap长度为128，那么可能hashmap的实际存
+储元素数量在64至128之间的时间段比较多，而这个时间段发生hash冲突就比较大，造成数组中其中一
+条链表较长，就会影响性能。而当加载因子值比较小的时候，扩容的频率就会变高，因此会占用更多的
+空间，但是元素的存储就比较稀疏，发生哈希冲突的可能性就比较小，因此操作性能会比较高，比如设
+置成0.5，同样128长度的hashmap，当数量达到65的时候就会触发hashmap的扩容，扩容后长度为256，
+256里面只存储了65个似乎有点浪费了。所以综合了以上情况就取了一个 0.5 到 1.0 的平均数 0.75
+作为加载因子。</p> <h3 id="hashmap-和-hashset-的区别有什么"><a href="#hashmap-和-hashset-的区别有什么" class="header-anchor">#</a> HashMap 和 HashSet 的区别有什么？</h3> <p>两者实现的接口不一样，HashMap 实现的是 Map 接口、HashSet 则实现的是 Set 接口。</p> <p>HashMap 存储的是键值对、HashSet 存储的是对象。</p> <p>HashSet 的速度比 HashMap 的要慢一些。</p> <p>计算 hashcode 值的方式不一样，HashMap 使用键对象来计算、HashSet 使用它本身的对象元素来计算。</p> <h3 id="当两个对象的-hashcode-相同会发生什么"><a href="#当两个对象的-hashcode-相同会发生什么" class="header-anchor">#</a> 当两个对象的 HashCode 相同会发生什么？</h3> <p>因为hashcode相同，所以它们的bucket位置相同，‘碰撞’会发生。因为HashMap使用链表存储对象，这个Entry(包含有键值对的Map.Entry对象)会存储在链表中。</p> <h3 id="如果两个键的-hashcode-相同-你如何获取值对象"><a href="#如果两个键的-hashcode-相同-你如何获取值对象" class="header-anchor">#</a> 如果两个键的 HashCode 相同，你如何获取值对象？</h3> <p>当我们调用get()方法，HashMap会使用键对象的hashcode找到bucket位置，然后获取值对象。找到bucket位置之后，会调用keys.equals()方法去找到链表中正确的节点，最终找到要找的值对象。</p> <h3 id="多线程情况下-调整-hashmap-的大小会有什么问题"><a href="#多线程情况下-调整-hashmap-的大小会有什么问题" class="header-anchor">#</a> 多线程情况下，调整 HashMap 的大小会有什么问题？</h3> <p>由于线程不安全的原因，在多线程条件下调整 HashMap 的大小时会存在多个 HashMap  对象的竞争关系，不知道要给哪一个调整大小。如此一来，多线程情况调整 HashMap 的大小就会陷入死循环的情况，在 Java1.5 以后就增加了 ConcurrentHashMap 的对象解决多线程等问题。</p> <h3 id="jdk8中的hashmap有哪些改动"><a href="#jdk8中的hashmap有哪些改动" class="header-anchor">#</a> JDK8中的HashMap有哪些改动?</h3> <p>JDK7中的底层实现是数组+链表，JDK8中使用的是数组+链表+红黑树。</p> <p>JDK7中扩容时有可能出现死锁，JDK8中通过算法优化不会出现死锁了。</p> <p>JDK8中对算哈希值的哈希算法进行了简化以提高运算效率</p> <h3 id="jdk8中为什么要使用红黑树"><a href="#jdk8中为什么要使用红黑树" class="header-anchor">#</a> JDK8中为什么要使用红黑树?</h3> <p>因为JDK7中是用数组+链表来作为底层的数据结构的，但是如果数据量较多，或者hash算法的散列性不够，可能导致链表上的数据太多，导致链表过长，考虑一种极端情况：如果hash算法很差，所有的元素都在同一个链表上。那么在查询数据的时候的时间复杂度和链表查询的时间复杂度差不多是一样的，我们知道链表的一个优点是插入快，但是查询慢，所以如果HashMap中出现了很长的链表结构会影响整个HashMap的查询效率，我们使用HashMap时插入和查询的效率是都要具备的，而红黑树的插入和查询效率处于完全平衡二叉树和链表之间，所以使用红黑树是比较合适的。</p> <h3 id="hashmap扩容机制是怎么样的-jdk7-与jdk8有什么不同吗"><a href="#hashmap扩容机制是怎么样的-jdk7-与jdk8有什么不同吗" class="header-anchor">#</a> HashMap扩容机制是怎么样的，JDK7 与JDK8有什么不同吗?</h3> <p>首先，我们需要知道HashMap为什么需要扩容，道理很简单，HashMap底层是用数组+链表实现的，而数组是预先就已经分配好内存的，如果需要对数组进行扩容，需要重新开辟一个新的数组再将旧数组上的元素进行转移，如果不进行扩容，那么会导致HashMap的链表过长，查询效率降低，所以需要对数组进行扩容。</p> <p>在JDK7中，HashMap扩容的条件是 (size &gt;= threshold) &amp;&amp; (null !=table[bucketIndex]) ， size  为HashMap当前的容量， threshold 初始化值为12， table[bucketIndex]  代表所put进来的key所对应的数组上的元素，所以在JDK7中扩容条件是当当Put操操作传入的  作传入的Key值所对应的数组位置上不为空时并且当前容量大于等于了扩容的阈值时才进行扩容  值所对应的数组位置上不为空时并且当前容量大于等于了扩容的阈值时才进行扩容，JDK7中的扩容思路是：开辟一个新的数组，数组大小为原数组的两倍，然后再将数组上的链表与元素转移到新数组上，此过程可能会出现死锁。</p> <p>JDK8中的扩容条件比JDK7中要少，只有当前容量大于等于了扩容的阈值时才进行扩容 当前容量大于等于了扩容的阈值时才进行扩容，并且扩容的思路也发生了变化，思路比较复杂。</p> <h3 id="为什么重写对象的equals方法时-要重写hashcode方法-跟hashmap有关系吗-为什么"><a href="#为什么重写对象的equals方法时-要重写hashcode方法-跟hashmap有关系吗-为什么" class="header-anchor">#</a> 为什么重写对象的Equals方法时，要重写HashCode方法，跟HashMap有关系吗?为什么？</h3> <p>跟HashMap有关系，或者说因为HashMap中用到了对象的hashcode方法所以会有关系，因为我们如果在设计两个对象相等的逻辑时，如果只重写Equals方法，那么一个类有两个对象A1，A2，他们的A1.equals(A2)为true，A1.hashcode和A2.hashcode不一样，当将A1和A2都作为HashMap的key时，HashMap会认为它两不相等，因为HashMap在判断key值相不相等时会判断key的hashcode是不是一样，hashcode一样相等，所以在这种场景下会出现我们认为这两个对象相等，但是hashmap不这么认为，所以会有问题。</p> <h3 id="在使用hashmap的过程中我们应该注意些什么问题"><a href="#在使用hashmap的过程中我们应该注意些什么问题" class="header-anchor">#</a> 在使用HashMap的过程中我们应该注意些什么问题?</h3> <p>HashMap的扩容机制是很影响效率的，所以如果事先能确定有多少个元素需要存储，那么建议在初始化HashMap时对数组的容量也进行初始化，防止扩容。</p> <p>HashMap中使用了对象的hashcode方法，而且很关键，所以再重写对象的equals时建议一定要重写hashcode方法。</p> <p>如果是用对象作为HashMap的key，那么请将对象设置为final，以防止对象被重新赋值，因为一旦重新赋值其实就代表了一个新对象作为了key，因为两个对象的hashcode可能不同。</p> <h3 id="hashmap和hashtable的区别"><a href="#hashmap和hashtable的区别" class="header-anchor">#</a> HashMap和Hashtable的区别</h3> <p>HashMap 是非线程安全的，HashTable 是线程安全的；</p> <p>HashTable 内部的方法基本都经过 synchronized修饰因为线程安全的问题，HashMap 要比 HashTable 效率高一点。另外，HashTable 基本被淘汰，不要在代码中使用它</p> <p>HashMap 中，null 可以作为键，这样的键只有一个，可以有一个或多个键所对应的值为 null。但是在HashTable 中put 进的键值只要有一个 null，直接抛出 NullPointerException。</p> <p>JDK1.8 以后的 HashMap在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为8）时，将链表转化为红黑树，以减少搜索时间。Hashtable没有这样的机制。</p> <h3 id="为什么hashmap大小是2的整数次幂的时候效率最高"><a href="#为什么hashmap大小是2的整数次幂的时候效率最高" class="header-anchor">#</a> 为什么HashMap大小是2的整数次幂的时候效率最高</h3> <p>哈希算法主要分两步操作：1.通过哈希值定位一个链表； 2.遍历链表，通过equals方法找到具体节点。</p> <p>为了使哈希算法效率最高，应该尽量让数据在哈希表中均匀分布，因为那样可以避免出现过长的链表，也就降低了遍历链表的代价。</p> <h3 id="linkedhashmap和hashmap的区别"><a href="#linkedhashmap和hashmap的区别" class="header-anchor">#</a> LinkedHashMap和HashMap的区别</h3> <p>HashMap 是一个散列表，它存储的内容是键值对(key-value)映射。
+HashMap继承于AbstractMap，实现了Map、Cloneable、java.io.Serializable接口。
+HashMap的实现不是同步的，这意味着它不是线程安全的。它的key、value都可以为null，其中HashMap最多只允许一条记录的键为Null，允许多条记录的值为Null。此外，HashMap中的映射不是有序的。
+HashMap 的实例有两个参数影响其性能：“初始容量” 和 “加载因子”。容量 是哈希表中桶的数量，初始容量 只是哈希表在创建时的容量。加载因子 是哈希表在其容量自动增加之前可以达到多满的一种尺度。当哈希表中的条目数超出了加载因子与当前容量的乘积时，则要对该哈希表进行 rehash 操作（即重建内部数据结构），从而哈希表将具有大约两倍的桶数。
+通常，默认加载因子是 0.75, 这是在时间和空间成本上寻求一种折衷。加载因子过高虽然减少了空间开销，但同时也增加了查询成本（在大多数 HashMap 类的操作中，包括 get 和 put 操作，都反映了这一点）。在设置初始容量时应该考虑到映射中所需的条目数及其加载因子，以便最大限度地减少 rehash 操作次数。如果初始容量大于最大条目数除以加载因子，则不会发生 rehash 操作。</p> <p>LinkedHashMap是HashMap的子类，但是内部还有一个双向链表维护键值对的顺序，每个键值对既位于哈希表中，也位于双向链表中。LinkedHashMap支持两种顺序插入顺序 、 访问顺序
+1.插入顺序：先添加的在前面，后添加的在后面。修改操作不影响顺序
+2.访问顺序：所谓访问指的是get/put操作，对一个键执行get/put操作后，其对应的键值对会移动到链表末尾，所以最末尾的是最近访问的，最开始的是最久没有被访问的，这就是访问顺序。</p> <p>HashMap 是一个最常用的Map，它根据键的HashCode 值存储数据，根据键可以直接获取它的值，具有很快的访问速度。遍历时，取得数据的顺序是完全随机的。
+HashMap最多只允许一条记录的键为Null；允许多条记录的值为 Null。
+HashMap不支持线程的同步（即任一时刻可以有多个线程同时写HashMap），可能会导致数据的不一致。如果需要同步，可以用 Collections的synchronizedMap方法使HashMap具有同步的能力，或者使用ConcurrentHashMap。
+Hashtable与 HashMap类似，它继承自Dictionary类。不同的是：Hashtable不允许记录的键或者值为空；它支持线程的同步（即任一时刻只有一个线程能写Hashtable），因此也导致了 Hashtable在写入时会比较慢。</p> <p>LinkedHashMap
+保存插入顺序：LinkedHashMap保存了记录的插入顺序，在用Iterator遍历LinkedHashMap时，先得到的记录肯定是先插入的。也可以在构造时带参数，按照应用次数排序。
+速度慢：在遍历的时候会比HashMap慢，不过有种情况例外：当HashMap容量很大，实际数据较少时，遍历起来可能会比LinkedHashMap慢。因为LinkedHashMap的遍历速度只和实际数据有关，和容量无关，而HashMap的遍历速度和他的容量有关。</p></div></div> <div class="page-slot page-slot-bottom"><!-- 横向自适应 -->
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-7828333725993554"
+          data-ad-slot="6620245489"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></div> <div class="page-edit"><div class="edit-link"><a href="https://github.com/wyba/blog/edit/master/docs/02.Java/02.HashMap原理和扩容机制.md" target="_blank" rel="noopener noreferrer">编辑</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="tags"><a href="/blog/tags/?tag=HashMap" title="标签">#HashMap</a></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2022/04/25, 18:05:27</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/blog/pages/java_1/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">JDK安装及环境变量设置</div></a> <a href="/blog/pages/38975b/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">Java反射机制</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blog/pages/java_1/" class="prev">JDK安装及环境变量设置</a></span> <span class="next"><a href="/blog/pages/38975b/">Java反射机制</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/blog/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/blog/pages/af8584/"><div>
+            BLE开发
+            <!----></div></a> <span class="date">04-29</span></dt></dl><dl><dd>02</dd> <dt><a href="/blog/pages/8aff38/"><div>
+            动画简介
+            <!----></div></a> <span class="date">04-29</span></dt></dl><dl><dd>03</dd> <dt><a href="/blog/pages/99060e/"><div>
+            View工作流程
+            <!----></div></a> <span class="date">04-29</span></dt></dl> <dl><dd></dd> <dt><a href="/blog/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="mailto:1070096495@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/wyba" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=755597173" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2021-2022
+    <span>wyb | <a href="https://github.com/wyba/blob/master/LICENSE" target="_blank">MIT License</a></span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <div class="custom-html-window custom-html-window-rb" style="display:;"><div class="custom-wrapper"><span class="close-but">×</span> <div><!-- 固定160*160px -->
+      <ins class="adsbygoogle"
+          style="display:inline-block;max-width:160px;max-height:160px"
+          data-ad-client="ca-pub-7828333725993554"
+          data-ad-slot="8377369658"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </div></div></div></div><div class="global-ui"><div></div></div></div>
+    <script src="/blog/assets/js/app.7a0bcda5.js" defer></script><script src="/blog/assets/js/2.a5a0f980.js" defer></script><script src="/blog/assets/js/39.849e03fc.js" defer></script>
+  </body>
+</html>

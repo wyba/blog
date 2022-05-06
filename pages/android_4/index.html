@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Android获取以太网mac、ip、网关、子网掩码 | wyb&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    <link rel="icon" href="/blog/img/favicon.ico">
+    <script data-ad-client="ca-pub-7828333725993554" async="async" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="description" content="主流技术博客,简洁至上,专注全栈学习与总结。">
+    <meta name="keywords" content="前端博客,个人技术博客,前端,前端开发,前端框架,web前端,前端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown">
+    <meta name="baidu-site-verification" content="7F55weZDDc">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/blog/assets/css/0.styles.7dd69afa.css" as="style"><link rel="preload" href="/blog/assets/js/app.7a0bcda5.js" as="script"><link rel="preload" href="/blog/assets/js/2.a5a0f980.js" as="script"><link rel="preload" href="/blog/assets/js/11.70f92a32.js" as="script"><link rel="prefetch" href="/blog/assets/js/10.2ffa04b0.js"><link rel="prefetch" href="/blog/assets/js/12.340f549c.js"><link rel="prefetch" href="/blog/assets/js/13.9e5f7372.js"><link rel="prefetch" href="/blog/assets/js/14.b9340184.js"><link rel="prefetch" href="/blog/assets/js/15.6c1f35df.js"><link rel="prefetch" href="/blog/assets/js/16.e3c6e4ef.js"><link rel="prefetch" href="/blog/assets/js/17.0053c99b.js"><link rel="prefetch" href="/blog/assets/js/18.45a0f3ed.js"><link rel="prefetch" href="/blog/assets/js/19.fb9cc485.js"><link rel="prefetch" href="/blog/assets/js/20.3d5c7a50.js"><link rel="prefetch" href="/blog/assets/js/21.3d0ee275.js"><link rel="prefetch" href="/blog/assets/js/22.e8a9df9a.js"><link rel="prefetch" href="/blog/assets/js/23.82ed3e72.js"><link rel="prefetch" href="/blog/assets/js/24.9d7a7b68.js"><link rel="prefetch" href="/blog/assets/js/25.0bc9ab07.js"><link rel="prefetch" href="/blog/assets/js/26.d2b7a967.js"><link rel="prefetch" href="/blog/assets/js/27.2c02fa2c.js"><link rel="prefetch" href="/blog/assets/js/28.a1afa2d7.js"><link rel="prefetch" href="/blog/assets/js/29.10d9dc2f.js"><link rel="prefetch" href="/blog/assets/js/3.8ec5b007.js"><link rel="prefetch" href="/blog/assets/js/30.425d8100.js"><link rel="prefetch" href="/blog/assets/js/31.63e4f8fb.js"><link rel="prefetch" href="/blog/assets/js/32.77a66ca1.js"><link rel="prefetch" href="/blog/assets/js/33.d0e23080.js"><link rel="prefetch" href="/blog/assets/js/34.1e204563.js"><link rel="prefetch" href="/blog/assets/js/35.2833874a.js"><link rel="prefetch" href="/blog/assets/js/36.97de71b1.js"><link rel="prefetch" href="/blog/assets/js/37.9036f6e9.js"><link rel="prefetch" href="/blog/assets/js/38.6793c03d.js"><link rel="prefetch" href="/blog/assets/js/39.849e03fc.js"><link rel="prefetch" href="/blog/assets/js/4.6e55e017.js"><link rel="prefetch" href="/blog/assets/js/40.56980ac8.js"><link rel="prefetch" href="/blog/assets/js/41.7a196738.js"><link rel="prefetch" href="/blog/assets/js/42.10732ea3.js"><link rel="prefetch" href="/blog/assets/js/43.810ba5a4.js"><link rel="prefetch" href="/blog/assets/js/44.73bbd126.js"><link rel="prefetch" href="/blog/assets/js/45.63b7b5a1.js"><link rel="prefetch" href="/blog/assets/js/46.a65e64ce.js"><link rel="prefetch" href="/blog/assets/js/47.00dc050a.js"><link rel="prefetch" href="/blog/assets/js/48.b91a0ddd.js"><link rel="prefetch" href="/blog/assets/js/49.4a16d835.js"><link rel="prefetch" href="/blog/assets/js/5.4843dc8e.js"><link rel="prefetch" href="/blog/assets/js/50.132e204b.js"><link rel="prefetch" href="/blog/assets/js/51.1345b9a1.js"><link rel="prefetch" href="/blog/assets/js/52.742ee8db.js"><link rel="prefetch" href="/blog/assets/js/53.8d9c7dd6.js"><link rel="prefetch" href="/blog/assets/js/54.c4038d3f.js"><link rel="prefetch" href="/blog/assets/js/55.766e53e6.js"><link rel="prefetch" href="/blog/assets/js/56.ad60a3d1.js"><link rel="prefetch" href="/blog/assets/js/57.13758d00.js"><link rel="prefetch" href="/blog/assets/js/58.ee3f65e8.js"><link rel="prefetch" href="/blog/assets/js/59.602af4ee.js"><link rel="prefetch" href="/blog/assets/js/6.da76d55e.js"><link rel="prefetch" href="/blog/assets/js/60.15e31058.js"><link rel="prefetch" href="/blog/assets/js/61.7f219b23.js"><link rel="prefetch" href="/blog/assets/js/62.10d98d67.js"><link rel="prefetch" href="/blog/assets/js/63.8ef0d49d.js"><link rel="prefetch" href="/blog/assets/js/64.983ab7ac.js"><link rel="prefetch" href="/blog/assets/js/65.37330ddf.js"><link rel="prefetch" href="/blog/assets/js/66.2776a634.js"><link rel="prefetch" href="/blog/assets/js/67.8b5b3535.js"><link rel="prefetch" href="/blog/assets/js/68.cccc4d3a.js"><link rel="prefetch" href="/blog/assets/js/7.ba6e6c9a.js"><link rel="prefetch" href="/blog/assets/js/8.99b38245.js"><link rel="prefetch" href="/blog/assets/js/9.fc8f51e1.js">
+    <link rel="stylesheet" href="/blog/assets/css/0.styles.7dd69afa.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/blog/" class="home-link router-link-active"><img src="/blog/img/EB-logo.png" alt="wyb's blog" class="logo"> <span class="site-name can-hide">wyb's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/blog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/blog/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div> <a href="https://github.com/wyba/blog" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="https://cdn.jsdelivr.net/gh/wyba/image_store/blog/lufei.jpeg"> <div class="blogger-info"><h3>wyb</h3> <span>吾日三省吾身</span></div></div> <nav class="nav-links"><div class="nav-item"><a href="/blog/" class="nav-link">首页</a></div><div class="nav-item"><a href="/blog/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div> <a href="https://github.com/wyba/blog" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/blog/pages/android_1/" class="sidebar-link">科大讯飞SDK使用总结</a></li><li><a href="/blog/pages/android_2/" class="sidebar-link">PDA串口UnsatisfiedLinkError解决</a></li><li><a href="/blog/pages/android_3/" class="sidebar-link">科大讯飞声纹识别WebApi鉴权认证失败解决</a></li><li><a href="/blog/pages/android_4/" aria-current="page" class="active sidebar-link">Android获取以太网mac、ip、网关、子网掩码</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/blog/pages/android_4/#_1-获取以太网mac" class="sidebar-link">1.获取以太网mac</a></li><li class="sidebar-sub-header level2"><a href="/blog/pages/android_4/#_2-获取以太网ip" class="sidebar-link">2.获取以太网ip</a></li><li class="sidebar-sub-header level2"><a href="/blog/pages/android_4/#_3-获取以太网网关" class="sidebar-link">3.获取以太网网关</a></li><li class="sidebar-sub-header level2"><a href="/blog/pages/android_4/#_4-获取子网掩码" class="sidebar-link">4.获取子网掩码</a></li></ul></li><li><a href="/blog/pages/android_5/" class="sidebar-link">Android科大讯飞离线命令词+声纹识别终极奥义</a></li><li><a href="/blog/pages/android_6/" class="sidebar-link">Android物联网三年开发总结</a></li><li><a href="/blog/pages/android_7/" class="sidebar-link">BaseFragment封装</a></li><li><a href="/blog/pages/android_8/" class="sidebar-link">File封装</a></li><li><a href="/blog/pages/android_9/" class="sidebar-link">AndroidX项目迁移</a></li><li><a href="/blog/pages/android_10/" class="sidebar-link">视频通话测试踩坑</a></li><li><a href="/blog/pages/a9e14e/" class="sidebar-link">Android Jetpack简介</a></li><li><a href="/blog/pages/2ebf62/" class="sidebar-link">Android Jetpack+MVVM</a></li><li><a href="/blog/pages/874c9e/" class="sidebar-link">Androidx分包</a></li><li><a href="/blog/pages/066351/" class="sidebar-link">Android性能优化</a></li><li><a href="/blog/pages/bac66b/" class="sidebar-link">Android Activity</a></li><li><a href="/blog/pages/08ee91/" class="sidebar-link">Android BroadcastReceiver</a></li><li><a href="/blog/pages/6f10c5/" class="sidebar-link">Android Service</a></li><li><a href="/blog/pages/7284b2/" class="sidebar-link">Android ContentProvider</a></li><li><a href="/blog/pages/14545c/" class="sidebar-link">Android Fragment</a></li><li><a href="/blog/pages/004b87/" class="sidebar-link">Android序列化</a></li><li><a href="/blog/pages/7b3423/" class="sidebar-link">View事件机制</a></li><li><a href="/blog/pages/420b54/" class="sidebar-link">多进程及IPC</a></li><li><a href="/blog/pages/e86925/" class="sidebar-link">Bitmap加载优化</a></li><li><a href="/blog/pages/b906ee/" class="sidebar-link">ListView原理及复用机制</a></li><li><a href="/blog/pages/19c834/" class="sidebar-link">OkHttp原理</a></li><li><a href="/blog/pages/e5b1b5/" class="sidebar-link">EventBus原理</a></li><li><a href="/blog/pages/37f9d7/" class="sidebar-link">MeasureSpec原理</a></li><li><a href="/blog/pages/99060e/" class="sidebar-link">View工作流程</a></li><li><a href="/blog/pages/8aff38/" class="sidebar-link">动画简介</a></li><li><a href="/blog/pages/af8584/" class="sidebar-link">BLE开发</a></li></ul> <div class="sidebar-slot sidebar-slot-bottom"><!-- 正方形 -->
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-7828333725993554"
+          data-ad-slot="3508773082"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></div></aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-1baff76c><div class="articleInfo" data-v-1baff76c><ul class="breadcrumbs" data-v-1baff76c><li data-v-1baff76c><a href="/blog/" title="首页" class="iconfont icon-home router-link-active" data-v-1baff76c></a></li> <li data-v-1baff76c><a href="/blog/Android/#Android" data-v-1baff76c>Android</a></li></ul> <div class="info" data-v-1baff76c><div title="作者" class="author iconfont icon-touxiang" data-v-1baff76c><a href="javascript:;" data-v-1baff76c>wyb</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-1baff76c><a href="javascript:;" data-v-1baff76c>2021-12-15</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">Android获取以太网mac、ip、网关、子网掩码<!----></h1> <div class="page-slot page-slot-top"><!-- 固定100% * 90px可显示，max-height:90px未见显示-->
+     <ins class="adsbygoogle"
+          style="display:inline-block;width:100%;max-height:90px"
+          data-ad-client="ca-pub-7828333725993554"
+          data-ad-slot="6625304284"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></div> <div class="theme-vdoing-content content__default"><blockquote><p>说明：由于物联网开发经常用到，代码经过了一个个版本的磨炼，开发总结一下。</p></blockquote> <h2 id="_1-获取以太网mac"><a href="#_1-获取以太网mac" class="header-anchor">#</a> 1.获取以太网mac</h2> <p>先获取以太网的mac，不行的话就获取wifi的mac</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>public static String getLocalMacAddress() {
+        String mac = &quot;&quot;;
+        try {
+            String path = &quot;sys/class/net/eth0/address&quot;;
+            FileInputStream fis_name = new FileInputStream(path);
+            byte[] buffer_name = new byte[1024 * 8];
+            int byteCount_name = fis_name.read(buffer_name);
+            if (byteCount_name &gt; 0) {
+                mac = new String(buffer_name, 0, byteCount_name, &quot;utf-8&quot;);
+            }
+
+            if (mac.length() == 0) {
+                path = &quot;sys/class/net/eth0/wlan0&quot;;
+                FileInputStream fis = new FileInputStream(path);
+                byte[] buffer = new byte[1024 * 8];
+                int byteCount = fis.read(buffer);
+                if (byteCount &gt; 0) {
+                    mac = new String(buffer, 0, byteCount, &quot;utf-8&quot;);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(&quot;mac=====&quot; + mac);
+        return mac.trim();
+    }
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br></div></div><h2 id="_2-获取以太网ip"><a href="#_2-获取以太网ip" class="header-anchor">#</a> 2.获取以太网ip</h2> <div class="language- line-numbers-mode"><pre class="language-text"><code>public static String getIpAddressForInterfaces() {
+
+        String interfaceName = &quot;eth0&quot;;
+
+        try {
+            Enumeration&lt;NetworkInterface&gt; enNetworkInterface = NetworkInterface.getNetworkInterfaces(); //获取本机所有的网络接口
+            while (enNetworkInterface.hasMoreElements()) {  //判断 Enumeration 对象中是否还有数据
+                NetworkInterface networkInterface = enNetworkInterface.nextElement();   //获取 Enumeration 对象中的下一个数据
+                if (!networkInterface.isUp()) { // 判断网口是否在使用
+                    continue;
+                }
+                if (!interfaceName.equals(networkInterface.getDisplayName())) { // 网口名称是否和需要的相同
+                    continue;
+                }
+                Enumeration&lt;InetAddress&gt; enInetAddress = networkInterface.getInetAddresses();   //getInetAddresses 方法返回绑定到该网卡的所有的 IP 地址。
+                while (enInetAddress.hasMoreElements()) {
+                    InetAddress inetAddress = enInetAddress.nextElement();
+                    if (inetAddress instanceof Inet4Address) {  //判断是否未ipv4
+                        return inetAddress.getHostAddress();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return &quot;0.0.0.0&quot;;
+    }
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br></div></div><h2 id="_3-获取以太网网关"><a href="#_3-获取以太网网关" class="header-anchor">#</a> 3.获取以太网网关</h2> <div class="language- line-numbers-mode"><pre class="language-text"><code>public static String getGateWay() {
+        String[] arr;
+        try {
+            Process process = Runtime.getRuntime().exec(&quot;ip route list table 0&quot;);
+            BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String string = in.readLine();
+            arr = string.split(&quot;\\s+&quot;);
+            return arr[2];
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return &quot;0.0.0.0&quot;;
+    }
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h2 id="_4-获取子网掩码"><a href="#_4-获取子网掩码" class="header-anchor">#</a> 4.获取子网掩码</h2> <div class="language- line-numbers-mode"><pre class="language-text"><code>/*获取子网掩码*/
+    public static String getIpAddressMaskForInterfaces() {
+
+        String interfaceName = &quot;eth0&quot;;
+
+        try {
+            //获取本机所有的网络接口
+            Enumeration&lt;NetworkInterface&gt; networkInterfaceEnumeration = NetworkInterface.getNetworkInterfaces();
+            //判断 Enumeration 对象中是否还有数据
+            while (networkInterfaceEnumeration.hasMoreElements()) {
+
+                //获取 Enumeration 对象中的下一个数据
+                NetworkInterface networkInterface = networkInterfaceEnumeration.nextElement();
+                if (!networkInterface.isUp() &amp;&amp; !interfaceName.equals(networkInterface.getDisplayName())) {
+
+                    //判断网口是否在使用，判断是否时我们获取的网口
+                    continue;
+                }
+
+                for (InterfaceAddress interfaceAddress : networkInterface.getInterfaceAddresses()) {
+                    if (interfaceAddress.getAddress() instanceof Inet4Address) {
+
+                        //仅仅处理ipv4
+                        //获取掩码位数，通过 calcMaskByPrefixLength 转换为字符串
+                        return calcMaskByPrefixLength(interfaceAddress.getNetworkPrefixLength());
+                    }
+                }
+            }
+        } catch (SocketException e) {
+
+            e.printStackTrace();
+        }
+
+        return &quot;0.0.0.0&quot;;
+    }
+
+    /*通过子网掩码的位数计算子网掩码*/
+    private static String calcMaskByPrefixLength(int length) {
+
+        int mask = 0xffffffff &lt;&lt; (32 - length);
+        int partsNum = 4;
+        int bitsOfPart = 8;
+        int maskParts[] = new int[partsNum];
+        int selector = 0x000000ff;
+
+        for (int i = 0; i &lt; maskParts.length; i++) {
+
+            int pos = maskParts.length - 1 - i;
+            maskParts[pos] = (mask &gt;&gt; (i * bitsOfPart)) &amp; selector;
+        }
+
+        String result = &quot;&quot;;
+        result = result + maskParts[0];
+
+        for (int i = 1; i &lt; maskParts.length; i++) {
+
+            result = result + &quot;.&quot; + maskParts[i];
+        }
+
+        return result;
+    }
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br></div></div></div></div> <div class="page-slot page-slot-bottom"><!-- 横向自适应 -->
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-7828333725993554"
+          data-ad-slot="6620245489"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script></div> <div class="page-edit"><div class="edit-link"><a href="https://github.com/wyba/blog/edit/master/docs/01.Android/04.Android获取以太网ip、mac、子网掩码.md" target="_blank" rel="noopener noreferrer">编辑</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="tags"><a href="/blog/tags/?tag=%E4%BB%A5%E5%A4%AA%E7%BD%91" title="标签">#以太网</a></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2021/12/15, 18:25:34</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/blog/pages/android_3/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">科大讯飞声纹识别WebApi鉴权认证失败解决</div></a> <a href="/blog/pages/android_5/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">Android科大讯飞离线命令词+声纹识别终极奥义</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/blog/pages/android_3/" class="prev">科大讯飞声纹识别WebApi鉴权认证失败解决</a></span> <span class="next"><a href="/blog/pages/android_5/">Android科大讯飞离线命令词+声纹识别终极奥义</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/blog/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/blog/pages/af8584/"><div>
+            BLE开发
+            <!----></div></a> <span class="date">04-29</span></dt></dl><dl><dd>02</dd> <dt><a href="/blog/pages/8aff38/"><div>
+            动画简介
+            <!----></div></a> <span class="date">04-29</span></dt></dl><dl><dd>03</dd> <dt><a href="/blog/pages/99060e/"><div>
+            View工作流程
+            <!----></div></a> <span class="date">04-29</span></dt></dl> <dl><dd></dd> <dt><a href="/blog/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="mailto:1070096495@qq.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/wyba" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://music.163.com/#/playlist?id=755597173" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2021-2022
+    <span>wyb | <a href="https://github.com/wyba/blob/master/LICENSE" target="_blank">MIT License</a></span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <div class="custom-html-window custom-html-window-rb" style="display:;"><div class="custom-wrapper"><span class="close-but">×</span> <div><!-- 固定160*160px -->
+      <ins class="adsbygoogle"
+          style="display:inline-block;max-width:160px;max-height:160px"
+          data-ad-client="ca-pub-7828333725993554"
+          data-ad-slot="8377369658"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </div></div></div></div><div class="global-ui"><div></div></div></div>
+    <script src="/blog/assets/js/app.7a0bcda5.js" defer></script><script src="/blog/assets/js/2.a5a0f980.js" defer></script><script src="/blog/assets/js/11.70f92a32.js" defer></script>
+  </body>
+</html>
